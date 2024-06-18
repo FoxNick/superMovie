@@ -6,6 +6,7 @@ import android.support.annotation.WorkerThread;
 import android.text.TextUtils;
 import android.util.Log;
 import android.webkit.WebResourceResponse;
+import io.github.pixee.security.BoundedLineReader;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
@@ -40,7 +41,7 @@ public class AdBlocker {
         InputStreamReader inputStreamReader = new InputStreamReader(stream);
         BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
         String line;
-        while ((line = bufferedReader.readLine()) != null){
+        while ((line = BoundedLineReader.readLine(bufferedReader, 5_000_000)) != null){
             AD_HOSTS.add(line);
         }
         bufferedReader.close();
