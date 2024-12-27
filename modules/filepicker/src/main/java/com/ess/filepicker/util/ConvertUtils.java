@@ -25,6 +25,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.ScrollView;
+import io.github.pixee.security.BoundedLineReader;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
@@ -542,7 +543,7 @@ public class ConvertUtils {
         try {
             BufferedReader reader = new BufferedReader(new InputStreamReader(is, charset));
             while (true) {
-                String line = reader.readLine();
+                String line = BoundedLineReader.readLine(reader, 5_000_000);
                 if (line == null) {
                     break;
                 } else {
