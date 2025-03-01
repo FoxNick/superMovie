@@ -111,7 +111,9 @@ public class QsyPlayerActivity extends AppCompatActivity implements IQsyView {
     @Override
     public void onDestroy() {
         if (presenter!=null)
-        presenter.destroy(videoPlayer.getPosition());
+        {
+            presenter.destroy(videoPlayer.getPosition());
+        }
         super.onDestroy();//销毁
     }
 
